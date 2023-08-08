@@ -40,8 +40,18 @@ class ExtensibleList(Generic[Datum]):
         return string_rep
 
     def __resize(self) -> None:
-        """Increases the list size."""
-        raise NotImplementedError()
+        """Increases the list's size."""
+        # The new capacity is the old capacity plus 1/8 of the old capacity, plus 6,
+        # rounded up to the nearest multiple of 4. This is the same factor used by the
+        # CPython implementation of `list`.
+        # See https://github.com/python/cpython/blob/bace59d8b8e38f5c779ff6296ebdc0527f6db14a/Objects/listobject.c#L62.
+        new_capacity = (self.get_capacity() + (self.get_capacity() >> 3) + 6) & ~3
+        new_data = [None] * new_capacity
+
+        for i in range(self.get_size()):
+            new_data[i] = self._data[i]
+
+        self._capacity, self._data = new_capacity, new_data
 
     def reset(self) -> None:
         """Resets the list to its initial form."""
