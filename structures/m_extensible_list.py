@@ -86,4 +86,4 @@ class ExtensibleList(Generic[Datum]):
 
     def get_capacity(self) -> int:
         """Returns the total capacity of the list."""
-        raise NotImplementedError()
+        return self._capacity
