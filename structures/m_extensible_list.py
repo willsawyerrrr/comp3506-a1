@@ -70,7 +70,10 @@ class ExtensibleList(Generic[Datum]):
         Sets the element at the given index of the list's data, similarly to
         `__setitem__`. If the index is outside the required bounds, does nothing.
         """
-        raise NotImplementedError()
+        if index < 0 or index >= self.get_size():
+            return
+
+        self.__setitem__(index, element)
 
     def append(self, element: Datum) -> None:
         """Adds an element to the end of the list. Resizes the list where necessary."""
