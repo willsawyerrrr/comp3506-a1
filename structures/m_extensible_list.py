@@ -82,7 +82,7 @@ class ExtensibleList(Generic[Datum]):
 
     def get_size(self) -> int:
         """Returns the number of non-empty elements in the list."""
-        raise NotImplementedError()
+        return self._size
 
     def get_capacity(self) -> int:
         """Returns the total capacity of the list."""
