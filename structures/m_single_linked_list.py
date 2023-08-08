@@ -107,6 +107,7 @@ class SingleLinkedList(Generic[Datum]):
 
         # check corner case; the head is yet to be set
         if current is None:
+            self.set_head(node)
             self.set_size(self.get_size() + 1)
             return
 
