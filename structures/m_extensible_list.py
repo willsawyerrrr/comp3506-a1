@@ -56,7 +56,10 @@ class ExtensibleList(Generic[Datum]):
         Returns the element at the given index of the list's data, similarly to
         `__getitem__`. If the index is outside the required bounds, returns `None`.
         """
-        raise NotImplementedError()
+        if index < 0 or index >= self.get_size():
+            return None
+
+        return self.__getitem__(index)
 
     def __setitem__(self, index: int, element: Datum) -> None:
         """Sets the element at the given index of the list's data."""
