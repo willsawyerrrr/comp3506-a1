@@ -22,7 +22,22 @@ class ExtensibleList(Generic[Datum]):
 
     def __str__(self) -> str:
         """Stringifies the list, including empty cells."""
-        raise NotImplementedError()
+        string_rep = "[ "
+
+        first = True
+        for i in range(self.get_capacity()):
+            if not first:
+                string_rep += ", "
+
+            if i < self.get_size():
+                string_rep += f"{self.get_at(i)}"
+            else:
+                string_rep += "EMPTY"
+
+            first = False
+
+        string_rep += " ]"
+        return string_rep
 
     def __resize(self) -> None:
         """Increases the list size."""
