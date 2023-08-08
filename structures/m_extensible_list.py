@@ -3,14 +3,22 @@ from typing import Generic, Optional, TypeVar
 Datum = TypeVar("Datum")
 """Generic type for the payload of an extensible list."""
 
-INITIAL_CAPACITY: int
+INITIAL_CAPACITY: int = 4
 """The initial capacity of a new list."""
 
 
 class ExtensibleList(Generic[Datum]):
     def __init__(self):
         """Initialise an empty list with some initial capacity."""
+
         self._data = [None] * INITIAL_CAPACITY
+        """The list's data."""
+
+        self._size = 0
+        """The number of non-empty elements in the list."""
+
+        self._capacity = INITIAL_CAPACITY
+        """The list's capacity."""
 
     def __str__(self) -> str:
         """Stringifies the list, including empty cells."""
