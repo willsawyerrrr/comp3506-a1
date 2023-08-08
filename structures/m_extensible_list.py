@@ -77,7 +77,10 @@ class ExtensibleList(Generic[Datum]):
 
     def append(self, element: Datum) -> None:
         """Adds an element to the end of the list. Resizes the list where necessary."""
-        raise NotImplementedError()
+        if self.is_full():
+            self.__resize()
+
+        self.__setitem__(self.get_size(), element)
 
     def remove(self, element: Datum) -> None:
         """
