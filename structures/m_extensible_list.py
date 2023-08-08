@@ -45,7 +45,7 @@ class ExtensibleList(Generic[Datum]):
 
     def reset(self) -> None:
         """Resets the list to its initial form."""
-        raise NotImplementedError()
+        self.__init__()
 
     def __getitem__(self, index: int) -> Datum:
         """Returns the element at the given index of the list's data."""
