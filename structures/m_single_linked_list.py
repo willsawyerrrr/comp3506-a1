@@ -99,6 +99,7 @@ class SingleLinkedList(Generic[Datum]):
             node.set_next(self.get_head())
 
         self.set_head(node)
+        self.set_size(self.get_size() + 1)
 
     def insert_to_back(self, node: SingleNode) -> None:
         """Inserts a node to the back of the list."""
