@@ -74,7 +74,7 @@ class ExtensibleList(Generic[Datum]):
 
     def is_empty(self) -> bool:
         """Returns whether the structure is empty."""
-        raise NotImplementedError()
+        return self.get_size() == 0
 
     def is_full(self) -> bool:
         """Returns whether the structure is full."""
