@@ -90,6 +90,20 @@ class LStack(Generic[Datum], SingleLinkedList[Datum]):
         """Returns whether the stack is empty."""
         return self.get_head() is None
 
-    # Hint: Override the required operations inherited from the SingleLinkedList below
-    #       which are needed to allow the LStack to function correctly. It is ok to
-    #       implement push, pop and seek in terms of inherited functionality.
+    def traverse_and_delete(self) -> None:
+        raise NotImplementedError()
+
+    def insert_to_back(self, node: SingleNode) -> None:
+        raise NotImplementedError()
+
+    def remove_from_back(self) -> SingleNode[Datum] | None:
+        raise NotImplementedError()
+
+    def find_element(self, element: Datum) -> SingleNode[Datum] | None:
+        raise NotImplementedError()
+
+    def find_and_remove_element(self, element: Datum) -> SingleNode[Datum] | None:
+        raise NotImplementedError()
+
+    def reverse(self) -> None:
+        raise NotImplementedError()
