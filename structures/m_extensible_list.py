@@ -108,7 +108,16 @@ class ExtensibleList(Generic[Datum]):
         Removes and returns the element at the given index. If the index is outside the
         required bounds, returns `None`.
         """
-        raise NotImplementedError()
+        if index < 0 or index >= self.get_size():
+            return None
+
+        element = self.get_at(index)
+
+        for i in range(index, self.get_size()):
+            self.set_at(i, self.get_at(i + 1))
+
+        self.set_size(self.get_size() - 1)
+        return element
 
     def is_empty(self) -> bool:
         """Returns whether the structure is empty."""
