@@ -12,7 +12,7 @@ class EStack(Generic[Datum], ExtensibleList[Datum]):
 
     def __init__(self):
         """Creates an empty stack."""
-        raise NotImplementedError()
+        super().__init__()
 
     def push(self, element: Datum) -> None:
         """Pushes the given element to the top of the stack."""
