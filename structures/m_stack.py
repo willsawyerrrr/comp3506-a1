@@ -52,6 +52,18 @@ class EStack(Generic[Datum], ExtensibleList[Datum]):
         """Returns whether the stack is empty."""
         return self.is_empty()
 
+    def remove(self, element: Datum) -> None:
+        raise NotImplementedError()
+
+    def reset(self) -> None:
+        raise NotImplementedError()
+
+    def set_at(self, index: int, element: Datum) -> None:
+        raise NotImplementedError()
+
+    def set_capacity(self, capacity: int) -> None:
+        raise NotImplementedError()
+
 
 class LStack(Generic[Datum], SingleLinkedList[Datum]):
     """A stack implementation using the SingleLinkedList for object storage."""
