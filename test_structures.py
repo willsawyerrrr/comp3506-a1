@@ -46,6 +46,120 @@ def test_extensible_list():
     print("==== Executing Extensible List Tests ====")
     my_ex_list = ExtensibleList()
 
+    assert my_ex_list.is_empty()
+    assert not my_ex_list.is_full()
+    assert my_ex_list.get_size() == 0
+    assert my_ex_list.get_capacity() == 4
+
+    my_ex_list.append("hello")
+    my_ex_list.append("world")
+    my_ex_list.append("algorithms")
+
+    print(str(my_ex_list))
+
+    assert not my_ex_list.is_empty()
+    assert not my_ex_list.is_full()
+    assert my_ex_list.get_size() == 3
+    assert my_ex_list.get_capacity() == 4
+
+    assert my_ex_list.get_at(0) == "hello"
+    assert my_ex_list.get_at(1) == "world"
+    assert my_ex_list.get_at(2) == "algorithms"
+
+    my_ex_list.append("data")
+
+    print(str(my_ex_list))
+
+    assert not my_ex_list.is_empty()
+    assert my_ex_list.is_full()
+    assert my_ex_list.get_size() == 4
+    assert my_ex_list.get_capacity() == 4
+
+    assert my_ex_list.get_at(0) == "hello"
+    assert my_ex_list.get_at(1) == "world"
+    assert my_ex_list.get_at(2) == "algorithms"
+    assert my_ex_list.get_at(3) == "data"
+
+    my_ex_list.append("structures")
+
+    print(str(my_ex_list))
+
+    assert not my_ex_list.is_empty()
+    assert not my_ex_list.is_full()
+    assert my_ex_list.get_size() == 5
+    assert my_ex_list.get_capacity() == 8
+
+    assert my_ex_list.get_at(0) == "hello"
+    assert my_ex_list.get_at(1) == "world"
+    assert my_ex_list.get_at(2) == "algorithms"
+    assert my_ex_list.get_at(3) == "data"
+    assert my_ex_list.get_at(4) == "structures"
+
+    my_ex_list.set_at(0, "goodbye")
+    my_ex_list.set_at(1, "universe")
+    my_ex_list.set_at(4, "classes")
+
+    print(str(my_ex_list))
+
+    assert not my_ex_list.is_empty()
+    assert not my_ex_list.is_full()
+    assert my_ex_list.get_size() == 5
+    assert my_ex_list.get_capacity() == 8
+
+    assert my_ex_list.get_at(0) == "goodbye"
+    assert my_ex_list.get_at(1) == "universe"
+    assert my_ex_list.get_at(2) == "algorithms"
+    assert my_ex_list.get_at(3) == "data"
+    assert my_ex_list.get_at(4) == "classes"
+
+    print(str(my_ex_list))
+
+    element = my_ex_list.remove_at(1)
+    assert element == "universe"
+    del element
+
+    assert not my_ex_list.is_empty()
+    assert not my_ex_list.is_full()
+    assert my_ex_list.get_size() == 4
+    assert my_ex_list.get_capacity() == 8
+
+    assert my_ex_list.get_at(0) == "goodbye"
+    assert my_ex_list.get_at(1) == "algorithms"
+    assert my_ex_list.get_at(2) == "data"
+    assert my_ex_list.get_at(3) == "classes"
+    assert my_ex_list.get_at(4) == None
+
+    print(str(my_ex_list))
+
+    my_ex_list.remove("data")
+
+    assert not my_ex_list.is_empty()
+    assert not my_ex_list.is_full()
+    assert my_ex_list.get_size() == 3
+    assert my_ex_list.get_capacity() == 8
+
+    assert my_ex_list.get_at(0) == "goodbye"
+    assert my_ex_list.get_at(1) == "algorithms"
+    assert my_ex_list.get_at(2) == "classes"
+    assert my_ex_list.get_at(3) == None
+
+    print(str(my_ex_list))
+
+    my_ex_list.reset()
+
+    assert my_ex_list.is_empty()
+    assert not my_ex_list.is_full()
+    assert my_ex_list.get_size() == 0
+    assert my_ex_list.get_capacity() == 4
+
+    assert my_ex_list.get_at(0) == None
+    assert my_ex_list.get_at(1) == None
+    assert my_ex_list.get_at(2) == None
+    assert my_ex_list.get_at(3) == None
+    assert my_ex_list.get_at(4) == None
+
+    print(str(my_ex_list))
+
 
 def test_ex_stack():
     """Tests the implementation of the extensible list-based stack."""
