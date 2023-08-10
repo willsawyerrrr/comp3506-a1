@@ -59,9 +59,6 @@ class ExtensibleList(Generic[Datum]):
 
     def __getitem__(self, index: int) -> Datum:
         """Returns the element at the given index of the list's data."""
-        if index < 0 or index >= self.get_size():
-            raise IndexError()
-
         return self._data[index]
 
     def get_at(self, index: int) -> Optional[Datum]:
@@ -76,9 +73,6 @@ class ExtensibleList(Generic[Datum]):
 
     def __setitem__(self, index: int, element: Datum) -> None:
         """Sets the element at the given index of the list's data."""
-        if index < 0 or index > self.get_size():
-            raise IndexError()
-
         self._data[index] = element
 
     def set_at(self, index: int, element: Datum) -> None:
