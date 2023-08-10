@@ -97,6 +97,7 @@ class ExtensibleList(Generic[Datum]):
             self.__resize()
 
         self.__setitem__(self.get_size(), element)
+        self.set_size(self.get_size() + 1)
 
     def remove(self, element: Datum) -> None:
         """
