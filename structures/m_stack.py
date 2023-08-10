@@ -30,11 +30,7 @@ class EStack(Generic[Datum], ExtensibleList[Datum]):
 
     def empty(self) -> bool:
         """Returns whether the stack is empty."""
-        raise NotImplementedError()
-
-    # Hint: Override the required operations inherited from the ExtensibleList below
-    #       which are needed to allow the EStack to function correctly. It is ok to
-    #       implement push, pop and seek in terms of inherited functionality.
+        return self.is_empty()
 
 
 class LStack(Generic[Datum], SingleLinkedList[Datum]):
