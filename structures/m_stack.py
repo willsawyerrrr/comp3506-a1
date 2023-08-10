@@ -80,7 +80,7 @@ class LStack(Generic[Datum], SingleLinkedList[Datum]):
         """
         Removes and returns the top element. If the stack is empty, returns `None`.
         """
-        raise NotImplementedError()
+        return self.remove_from_front()
 
     def peek(self) -> Optional[Datum]:
         """Returns the top element. If the stack is empty, returns `None`."""
