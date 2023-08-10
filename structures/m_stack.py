@@ -14,6 +14,26 @@ class EStack(Generic[Datum], ExtensibleList[Datum]):
         """Creates an empty stack."""
         super().__init__()
 
+    def __str__(self) -> str:
+        """Stringifies the stack."""
+        string_rep = ""
+
+        first = True
+        for i in range(self.get_size() - 1, -1, -1):
+            if first:
+                string_rep += "[> "
+            else:
+                string_rep += ", "
+
+            string_rep += str(self.get_at(i))
+
+            if first:
+                string_rep += " <]"
+
+            first = False
+
+        return string_rep
+
     def push(self, element: Datum) -> None:
         """Pushes the given element to the top of the stack."""
         self.append(element)
