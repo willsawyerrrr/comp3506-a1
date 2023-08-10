@@ -76,7 +76,7 @@ class ExtensibleList(Generic[Datum]):
 
     def __setitem__(self, index: int, element: Datum) -> None:
         """Sets the element at the given index of the list's data."""
-        if index < 0 or index >= self.get_size():
+        if index < 0 or index > self.get_size():
             raise IndexError()
 
         self._data[index] = element
@@ -86,7 +86,7 @@ class ExtensibleList(Generic[Datum]):
         Sets the element at the given index of the list's data, similarly to
         `__setitem__`. If the index is outside the required bounds, does nothing.
         """
-        if index < 0 or index >= self.get_size():
+        if index < 0 or index > self.get_size():
             return
 
         self.__setitem__(index, element)
