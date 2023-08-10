@@ -74,7 +74,7 @@ class LStack(Generic[Datum], SingleLinkedList[Datum]):
 
     def push(self, element: Datum) -> None:
         """Pushes the given element to the top of the stack."""
-        raise NotImplementedError()
+        self.insert_to_front(element)
 
     def pop(self) -> Optional[Datum]:
         """
