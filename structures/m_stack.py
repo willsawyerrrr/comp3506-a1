@@ -88,7 +88,7 @@ class LStack(Generic[Datum], SingleLinkedList[Datum]):
 
     def empty(self) -> bool:
         """Returns whether the stack is empty."""
-        raise NotImplementedError()
+        return self.get_head() is None
 
     # Hint: Override the required operations inherited from the SingleLinkedList below
     #       which are needed to allow the LStack to function correctly. It is ok to
