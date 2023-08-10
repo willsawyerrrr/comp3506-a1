@@ -16,7 +16,7 @@ class EStack(Generic[Datum], ExtensibleList[Datum]):
 
     def push(self, element: Datum) -> None:
         """Pushes the given element to the top of the stack."""
-        raise NotImplementedError()
+        self.append(element)
 
     def pop(self) -> Optional[Datum]:
         """
