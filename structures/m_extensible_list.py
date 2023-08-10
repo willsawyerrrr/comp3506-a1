@@ -98,7 +98,10 @@ class ExtensibleList(Generic[Datum]):
         Removes the first instance of the given element. Ensures elements remain
         contiguous.
         """
-        raise NotImplementedError()
+        for i in range(self.get_size()):
+            if self.get_at(i) == element:
+                self.remove_at(i)
+                return
 
     def remove_at(self, index: int) -> Optional[Datum]:
         """
