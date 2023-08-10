@@ -42,11 +42,11 @@ class EStack(Generic[Datum], ExtensibleList[Datum]):
         """
         Removes and returns the top element. If the stack is empty, returns `None`.
         """
-        return self.remove_at(self._data.get_size() - 1)
+        return self.remove_at(self.get_size() - 1)
 
     def peek(self) -> Optional[Datum]:
         """Returns the top element. If the stack is empty, returns `None`."""
-        return self.get_at(self._data.get_size() - 1)
+        return self.get_at(self.get_size() - 1)
 
     def empty(self) -> bool:
         """Returns whether the stack is empty."""
