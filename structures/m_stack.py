@@ -84,7 +84,7 @@ class LStack(Generic[Datum], SingleLinkedList[Datum]):
 
     def peek(self) -> Optional[Datum]:
         """Returns the top element. If the stack is empty, returns `None`."""
-        raise NotImplementedError()
+        return self.get_head()
 
     def empty(self) -> bool:
         """Returns whether the stack is empty."""
