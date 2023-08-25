@@ -58,9 +58,6 @@ class EStack(Generic[Datum], ExtensibleList[Datum]):
     def reset(self) -> None:
         raise NotImplementedError()
 
-    def set_at(self, index: int, element: Datum) -> None:
-        raise NotImplementedError()
-
     def set_capacity(self, capacity: int) -> None:
         raise NotImplementedError()
 
