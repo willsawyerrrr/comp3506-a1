@@ -71,17 +71,21 @@ class LStack(Generic[Datum], SingleLinkedList[Datum]):
 
     def push(self, element: Datum) -> None:
         """Pushes the given element to the top of the stack."""
-        self.insert_to_front(element)
+        self.insert_to_front(SingleNode(element))
 
     def pop(self) -> Optional[Datum]:
         """
         Removes and returns the top element. If the stack is empty, returns `None`.
         """
-        return self.remove_from_front()
+        if head := self.remove_from_front():
+            return head.get_data()
+        return None
 
     def peek(self) -> Optional[Datum]:
         """Returns the top element. If the stack is empty, returns `None`."""
-        return self.get_head()
+        if head := self.get_head():
+            return head.get_data()
+        return None
 
     def empty(self) -> bool:
         """Returns whether the stack is empty."""
