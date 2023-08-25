@@ -60,7 +60,7 @@ class ExtensibleList(Generic[Datum]):
     def __getitem__(self, index: int) -> Datum:
         """
         Returns the element at the given index of the list's data. If the index is
-        outside the required bound, raises an `IndexError`.
+        outside the required bounds, raises an `IndexError`.
         """
         if index < 0 or index >= self.get_size():
             raise IndexError()
@@ -69,8 +69,8 @@ class ExtensibleList(Generic[Datum]):
 
     def get_at(self, index: int) -> Optional[Datum]:
         """
-        Returns the element at the given index of the list's data, similarly to
-        `__getitem__`. If the index is outside the required bounds, returns `None`.
+        Returns the element at the given index of the list's data. If the index is
+        outside the required bounds, returns `None`.
         """
         try:
             return self[index]
@@ -79,8 +79,8 @@ class ExtensibleList(Generic[Datum]):
 
     def __setitem__(self, index: int, element: Datum) -> None:
         """
-        Sets the element at the given index of the list's data. If the index is
-        outside the required bound, raises an `IndexError`.
+        Sets the element at the given index of the list's data. If the index is outside
+        the required bounds, raises an `IndexError`.
         """
         if index < 0 or index >= self.get_size():
             raise IndexError()
@@ -89,8 +89,8 @@ class ExtensibleList(Generic[Datum]):
 
     def set_at(self, index: int, element: Datum) -> None:
         """
-        Sets the element at the given index of the list's data, similarly to
-        `__setitem__`. If the index is outside the required bounds, does nothing.
+        Sets the element at the given index of the list's data. If the index is outside
+        the required bounds, does nothing.
         """
         try:
             self[index] = element
