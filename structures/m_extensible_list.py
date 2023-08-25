@@ -58,7 +58,13 @@ class ExtensibleList(Generic[Datum]):
         self.__init__()
 
     def __getitem__(self, index: int) -> Datum:
-        """Returns the element at the given index of the list's data."""
+        """
+        Returns the element at the given index of the list's data. If the index is
+        outside the required bound, raises an `IndexError`.
+        """
+        if index < 0 or index >= self.get_size():
+            raise IndexError()
+
         return self._data[index]
 
     def get_at(self, index: int) -> Optional[Datum]:
@@ -66,13 +72,19 @@ class ExtensibleList(Generic[Datum]):
         Returns the element at the given index of the list's data, similarly to
         `__getitem__`. If the index is outside the required bounds, returns `None`.
         """
-        if index < 0 or index >= self.get_size():
+        try:
+            return self.__getitem__(index)
+        except IndexError:
             return None
 
-        return self.__getitem__(index)
-
     def __setitem__(self, index: int, element: Datum) -> None:
-        """Sets the element at the given index of the list's data."""
+        """
+        Sets the element at the given index of the list's data. If the index is
+        outside the required bound, raises an `IndexError`.
+        """
+        if index < 0 or index >= self.get_size():
+            raise IndexError()
+
         self._data[index] = element
 
     def set_at(self, index: int, element: Datum) -> None:
@@ -80,18 +92,19 @@ class ExtensibleList(Generic[Datum]):
         Sets the element at the given index of the list's data, similarly to
         `__setitem__`. If the index is outside the required bounds, does nothing.
         """
-        if index < 0 or index >= self.get_size():
-            return
-
-        self.__setitem__(index, element)
+        try:
+            self.__setitem__(index, element)
+        except IndexError:
+            pass
 
     def append(self, element: Datum) -> None:
         """Adds an element to the end of the list. Resizes the list where necessary."""
         if self.is_full():
             self.__resize()
 
-        self.__setitem__(self.get_size(), element)
+        index = self.get_size()
         self.set_size(self.get_size() + 1)
+        self.__setitem__(index, element)
 
     def remove(self, element: Datum) -> None:
         """
@@ -108,10 +121,8 @@ class ExtensibleList(Generic[Datum]):
         Removes and returns the element at the given index. If the index is outside the
         required bounds, returns `None`.
         """
-        if index < 0 or index >= self.get_size():
+        if not (element := self.get_at(index)):
             return None
-
-        element = self.get_at(index)
 
         for i in range(index, self.get_size()):
             self.set_at(i, self.get_at(i + 1))
