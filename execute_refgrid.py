@@ -90,7 +90,23 @@ class RefGrid:
         Task 2.1, sequence reversal. You need to use/store your result in the
         linkedlist class member.
         """
-        raise NotImplementedError()
+        new_list = SingleLinkedList()
+
+        for _ in range(k * self.len):
+            new_list.insert_to_front(self.linkedlist.remove_from_front())
+
+        stack = EStack()
+        for _ in range(k * self.len, (k + 1) * self.len):
+            stack.push(self.linkedlist.remove_from_front())
+
+        while not stack.is_empty():
+            new_list.insert_to_front(stack.pop())
+
+        for _ in range((k + 1) * self.len, self.rows * self.len):
+            new_list.insert_to_front(self.linkedlist.remove_from_front())
+
+        new_list.reverse()
+        self.linkedlist = new_list
 
     def cut_and_splice(self, pattern, plen, target, tlen):
         """
