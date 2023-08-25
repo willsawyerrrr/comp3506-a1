@@ -73,7 +73,7 @@ class ExtensibleList(Generic[Datum]):
         `__getitem__`. If the index is outside the required bounds, returns `None`.
         """
         try:
-            return self.__getitem__(index)
+            return self[index]
         except IndexError:
             return None
 
@@ -93,7 +93,7 @@ class ExtensibleList(Generic[Datum]):
         `__setitem__`. If the index is outside the required bounds, does nothing.
         """
         try:
-            self.__setitem__(index, element)
+            self[index] = element
         except IndexError:
             pass
 
@@ -104,7 +104,7 @@ class ExtensibleList(Generic[Datum]):
 
         index = self.get_size()
         self.set_size(self.get_size() + 1)
-        self.__setitem__(index, element)
+        self[index] = element
 
     def remove(self, element: Datum) -> None:
         """
