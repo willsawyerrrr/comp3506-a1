@@ -191,7 +191,7 @@ def benchmark_stacks(n: int):
     t0 = time.time()
     for item in randomlist:
         ls.push(item)
-    while not es.empty():
+    while not ls.empty():
         ls.pop()
     t1 = time.time()
     total_ls = t1 - t0
