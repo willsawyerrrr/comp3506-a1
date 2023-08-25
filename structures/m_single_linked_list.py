@@ -95,8 +95,7 @@ class SingleLinkedList(Generic[Datum]):
 
     def insert_to_front(self, node: SingleNode) -> None:
         """Inserts a node to the front of the list."""
-        if self.get_head() is not None:
-            node.set_next(self.get_head())
+        node.set_next(self.get_head())
 
         self.set_head(node)
         self.set_size(self.get_size() + 1)
