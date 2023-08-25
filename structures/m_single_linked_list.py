@@ -207,20 +207,13 @@ class SingleLinkedList(Generic[Datum]):
     def reverse(self) -> None:
         """Reverses the list."""
 
-        if self.get_head() is None:
-            return
-
-        if self.get_head().get_next() is None:
-            return
-
+        previous = None
         current = self.get_head()
-        next = current.get_next()
-        current.set_next(None)
 
-        while next is not None:
-            follow = next.get_next()
-            next.set_next(current)
+        while current is not None:
+            next = current.get_next()
+            current.set_next(previous)
+            previous = current
             current = next
-            next = follow
 
-        self.set_head(current)
+        self.set_head(previous)
