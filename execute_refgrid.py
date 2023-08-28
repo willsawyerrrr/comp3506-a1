@@ -133,8 +133,36 @@ class RefGrid:
 
     def is_viable(self) -> bool:
         """Returns whether the RefGrid is viable for cloning."""
-        # Note: make sure to use self.extlist for this task based on Barry's algorithm
-        raise NotImplementedError()
+        my_stack = LStack()
+        visited = SingleLinkedList()
+        current = 0
+        end = self.extlist.get_size() - 1
+        base = self.extlist.get_at(current)
+        my_stack.push(current)
+        visited.insert_to_front(SingleNode(current))
+
+        while not my_stack.empty() and current != end:
+            current = my_stack.pop()
+            right_idx = self.right(current)
+            below_idx = self.below(current)
+
+            if (
+                right_idx != 0
+                and self.extlist.get_at(right_idx) == base
+                and not visited.find_element(right_idx)
+            ):
+                my_stack.push(right_idx)
+                visited.insert_to_front(SingleNode(right_idx))
+
+            if (
+                below_idx != 0
+                and self.extlist.get_at(below_idx) == base
+                and not visited.find_element(below_idx)
+            ):
+                my_stack.push(below_idx)
+                visited.insert_to_front(SingleNode(below_idx))
+
+        return current == end
 
 
 def validate_patterns(pattern: str, target: str) -> bool:
