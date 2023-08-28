@@ -127,7 +127,9 @@ class RefGrid:
 
     def below(self, idx: int) -> int:
         """Returns the index below idx or 0 if it is out of bounds."""
-        raise NotImplementedError()
+        if idx < 0 or idx >= (self.rows - 1) * self.len:
+            return 0
+        return idx + self.len
 
     def is_viable(self) -> bool:
         """Returns whether the RefGrid is viable for cloning."""
