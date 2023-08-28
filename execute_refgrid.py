@@ -75,7 +75,7 @@ class RefGrid:
 
     def stringify_extlist(self) -> str:
         """Converts the extensible list to a string."""
-        raise NotImplementedError()
+        return str(self.extlist)
 
     def stringify_spliced_linkedlist(self) -> str:
         """
