@@ -82,8 +82,22 @@ class RefGrid:
         Converts a cut-and-spliced linked list by handling the variable row length of
         each sequence.
         """
-        # Note: use this to test your output for Task 2.2.
-        raise NotImplementedError()
+        outstr = ""
+        counter = 0
+        row = 0
+        end = self.extlist.get_at(row)
+        current = self.linkedlist.get_head()
+
+        while current != None:
+            outstr += str(current.get_data())
+            counter += 1
+            if counter == end:
+                outstr += "\n"
+                row += 1
+                end += self.extlist.get_at(row)
+            current = current.get_next()
+
+        return outstr
 
     def reverse_seq(self, k):
         """
