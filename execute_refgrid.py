@@ -121,7 +121,9 @@ class RefGrid:
 
     def right(self, idx: int) -> int:
         """Returns the index to the right of idx or 0 if it is out of bounds."""
-        raise NotImplementedError()
+        if idx < 0 or idx % self.len == self.len - 1 or idx >= self.rows * self.len:
+            return 0
+        return idx + 1
 
     def below(self, idx: int) -> int:
         """Returns the index below idx or 0 if it is out of bounds."""
