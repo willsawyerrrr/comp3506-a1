@@ -69,6 +69,8 @@ class RefGrid:
             counter += 1
             if counter % self.len == 0:
                 outstr += "\n"
+            else:
+                outstr += " -> "
             current = current.get_next()
 
         return outstr
@@ -94,7 +96,10 @@ class RefGrid:
             if counter == end:
                 outstr += "\n"
                 row += 1
-                end += self.extlist.get_at(row)
+                if row < self.rows:
+                    end += self.extlist.get_at(row)
+            else:
+                outstr += " -> "
             current = current.get_next()
 
         return outstr
