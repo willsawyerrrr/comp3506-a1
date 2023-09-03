@@ -127,16 +127,68 @@ class RefGrid:
         new_list.reverse()
         self.linkedlist = new_list
 
-    def cut_and_splice(self, pattern, plen, target, tlen):
+    def cut_and_splice(self, pattern: str, plen: int, target: str, tlen: int) -> None:
         """
-        Task 2.2, cut-and-splice (plen is the length of the pattern, tlen is
-        the length of the target. We provide these so you don't have to call
-        len() since it's not allowed...
-        Note: You are allowed to access and operate on the strings directly,
-        EG: first_char = pattern[0] - you do NOT need to convert them to
-        linked list or extensible list representations
+        Replaces all occurrences of pattern with target in the RefGrid, storing the
+        result in the `linkedlist` member.
         """
-        raise NotImplementedError()
+        for _ in range(self.rows):
+            self.extlist.append(self.len)
+
+        replace_inc = plen - tlen
+        match_len = 0
+        before = None
+        node = self.linkedlist.get_head()
+
+        while node is not None:
+            if node.get_data() == pattern[match_len]:
+                match_len += 1
+
+                if match_len == plen:
+                    node = self.join(before, node.get_next(), target, tlen)
+                    self.linkedlist.set_size(self.linkedlist.get_size() + replace_inc)
+                    match_len = 0
+            else:
+                match_len = 0
+                before = node
+
+            node = node.get_next()
+
+    def join(
+        self,
+        before: SingleNode | None,
+        after: SingleNode | None,
+        target: str,
+        tlen: int,
+    ) -> None:
+        """
+        Joins the target to the linked list.
+
+        If both before and after are not None, target will be inserted between them.
+        head -> ... -> before -> target[0] -> ... -> target[-1] -> after -> ... -> null
+
+        If after is None, target[-1] will be the last node in the linked list.
+        head -> ... -> before -> target[0] -> ... -> target[-1] -> null
+
+        If before is None, target[0] will be the first node in the linked list.
+        head -> target[0] -> ... -> target[-1] -> after -> ... -> null
+
+        If both before and after are None, target will replace the entire linked list.
+        head -> target[0] -> ... -> target[-1] -> null
+        """
+        node = SingleNode(target[0])
+
+        if before is not None:
+            before.set_next(node)
+        else:
+            self.linkedlist.set_head(node)
+
+        for i in range(1, tlen):
+            node.set_next(SingleNode(target[i]))
+            node = node.get_next()
+
+        node.set_next(after)
+        return node
 
     def right(self, idx: int) -> int:
         """Returns the index to the right of idx or 0 if it is out of bounds."""
