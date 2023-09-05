@@ -133,6 +133,8 @@ class RefGrid:
 
         replace_inc = tlen - plen
         match_len = 0
+        row = 0
+        column = 0
         before = None
         previous = None
         node = self.linkedlist.get_head()
@@ -150,12 +152,20 @@ class RefGrid:
             if match_len == plen:
                 node = self.join(before, node.get_next(), target, tlen)
                 self.linkedlist.set_size(self.linkedlist.get_size() + replace_inc)
-                self.extlist.set_at(0, self.extlist.get_at(0) + replace_inc)
+                self.extlist.set_at(row, self.extlist.get_at(row) + replace_inc)
+                column += replace_inc
                 match_len = 0
                 before = node
 
             previous = node
             node = node.get_next()
+            column += 1
+
+            if column == self.extlist.get_at(row):
+                match_len = 0
+                row += 1
+                column = 0
+                before = previous
 
     def join(
         self,
