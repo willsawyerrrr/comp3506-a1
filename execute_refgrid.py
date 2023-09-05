@@ -146,6 +146,7 @@ class RefGrid:
             if match_len == plen:
                 node = self.join(before, node.get_next(), target, tlen)
                 self.linkedlist.set_size(self.linkedlist.get_size() + replace_inc)
+                self.extlist.set_at(0, self.extlist.get_at(0) + replace_inc)
                 match_len = 0
                 before = node
 
