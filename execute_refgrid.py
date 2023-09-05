@@ -134,11 +134,15 @@ class RefGrid:
         replace_inc = tlen - plen
         match_len = 0
         before = None
+        previous = None
         node = self.linkedlist.get_head()
 
         while node is not None:
             if node.get_data() == pattern[match_len]:
                 match_len += 1
+            elif node.get_data() == pattern[0]:
+                match_len = 1
+                before = previous
             else:
                 match_len = 0
                 before = node
@@ -150,6 +154,7 @@ class RefGrid:
                 match_len = 0
                 before = node
 
+            previous = node
             node = node.get_next()
 
     def join(
