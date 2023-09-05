@@ -139,12 +139,13 @@ class RefGrid:
         while node is not None:
             if node.get_data() == pattern[match_len]:
                 match_len += 1
-
-                if match_len == plen:
-                    node = self.join(before, node.get_next(), target, tlen)
-                    self.linkedlist.set_size(self.linkedlist.get_size() + replace_inc)
-                    match_len = 0
             else:
+                match_len = 0
+                before = node
+
+            if match_len == plen:
+                node = self.join(before, node.get_next(), target, tlen)
+                self.linkedlist.set_size(self.linkedlist.get_size() + replace_inc)
                 match_len = 0
                 before = node
 
