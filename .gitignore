@@ -1,3 +1,9 @@
+actual/
+before/
+expected/
+
+cut_and_splice.py
+generate.py
 upload.zip
 
 # Byte-compiled / optimized / DLL files
