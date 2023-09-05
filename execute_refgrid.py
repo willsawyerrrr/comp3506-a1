@@ -131,7 +131,7 @@ class RefGrid:
         for _ in range(self.rows):
             self.extlist.append(self.len)
 
-        replace_inc = plen - tlen
+        replace_inc = tlen - plen
         match_len = 0
         before = None
         node = self.linkedlist.get_head()
